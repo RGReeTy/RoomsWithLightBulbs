@@ -17,7 +17,7 @@ public final class ServiceFactory {
     }
 
 
-    public RoomService getUserService() {
+    public RoomService getRoomService() {
         return roomService;
     }
 

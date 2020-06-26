@@ -1,24 +1,10 @@
-package by.epam.travel_agency.controller.command;
+package net.itspartner.rooms_with_light_bulbs.controller.command.front;
 
 
 public enum CommandName {
 
-    CHANGE_LOCALE,
-    GO_TO_PAGE,
-    LOGIN,
-    LOGOUT,
-    REGISTRATION,
-    SHOW_ACCOUNT,
-    SHOW_TOURS,
-    SHOW_CONCRETE_TOUR,
-    SHOW_ALL_HOTELS,
-    SHOW_LEVEL_ACCESS,
-    CHANGE_LEVEL_ACCESS,
-    CONTROL,
-    GET_PAYMENT_HISTORY,
-    GET_PAYMENT_DEBT,
-    GET_INFO_ABOUT_USER,
-    CREATE_TOUR_PAGE,
-    CREATE_TOUR,
-    WRONG_COMMAND;
+    ADD_NEW_ROOM,
+    CHECK_IS_ROOM_NAME_FREE,
+    CHANGE_LIGHT_STATUS,
+    GET_ALL_ROOMS;
 }

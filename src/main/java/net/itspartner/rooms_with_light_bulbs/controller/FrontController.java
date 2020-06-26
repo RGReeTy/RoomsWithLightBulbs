@@ -1,9 +1,7 @@
 package net.itspartner.rooms_with_light_bulbs.controller;
 
-import by.epam.travel_agency.controller.command.Command;
-import by.epam.travel_agency.controller.command.CommandProvider;
-import by.epam.travel_agency.controller.param_name.RequestParameterName;
-
+import net.itspartner.rooms_with_light_bulbs.controller.command.CommandProvider;
+import net.itspartner.rooms_with_light_bulbs.controller.command.front.Command;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;

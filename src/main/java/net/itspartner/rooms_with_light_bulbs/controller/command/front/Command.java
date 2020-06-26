@@ -1,4 +1,4 @@
-package by.epam.travel_agency.controller.command;
+package net.itspartner.rooms_with_light_bulbs.controller.command.front;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
