@@ -1,16 +1,13 @@
-package by.epam.travel_agency.service.factory;
+package net.itspartner.rooms_with_light_bulbs.service.factory;
 
-import by.epam.travel_agency.service.receiver.TourService;
-import by.epam.travel_agency.service.receiver.TourServiceImpl;
-import by.epam.travel_agency.service.receiver.UserService;
-import by.epam.travel_agency.service.receiver.UserServiceImpl;
+import net.itspartner.rooms_with_light_bulbs.service.RoomService;
+import net.itspartner.rooms_with_light_bulbs.service.RoomServiceImpl;
 
 public final class ServiceFactory {
 
     private static final ServiceFactory instance = new ServiceFactory();
 
-    private final TourService testService = new TourServiceImpl();
-    private final UserService userService = new UserServiceImpl();
+    private final RoomService roomService = new RoomServiceImpl();
 
     private ServiceFactory() {
     }
@@ -19,12 +16,9 @@ public final class ServiceFactory {
         return instance;
     }
 
-    public TourService getTourService() {
-        return testService;
-    }
 
-    public UserService getUserService() {
-        return userService;
+    public RoomService getUserService() {
+        return roomService;
     }
 
 }

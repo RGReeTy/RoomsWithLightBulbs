@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Room implements Serializable {
 
     private String roomsName;
-    private Country country;
+    private String country;
     private boolean lightStatus;
 
     public String getRoomsName() {
@@ -17,11 +17,11 @@ public class Room implements Serializable {
         this.roomsName = roomsName;
     }
 
-    public Country getCountry() {
+    public String getCountry() {
         return country;
     }
 
-    public void setCountry(Country country) {
+    public void setCountry(String country) {
         this.country = country;
     }
 

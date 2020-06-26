@@ -1,6 +1,7 @@
-package by.epam.travel_agency.dao.factory;
+package net.itspartner.rooms_with_light_bulbs.dao.factory;
 
-import by.epam.travel_agency.dao.factory.impl.SQLDAOFactory;
+
+import net.itspartner.rooms_with_light_bulbs.dao.factory.impl.SQLDAOFactory;
 
 public class DAOFactoryProvider {
 

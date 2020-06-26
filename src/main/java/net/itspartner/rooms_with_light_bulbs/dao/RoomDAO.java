@@ -6,12 +6,12 @@ import java.util.List;
 
 public interface RoomDAO {
 
-    boolean addNewRoom();
+    boolean addNewRoom(Room room) throws DAOException;
 
-    boolean checkIsRoomNameFree();
+    boolean checkIsRoomNameFree(String name) throws DAOException;
 
-    void changeLightStatus();
+    void changeLightStatus(int value, String name) throws DAOException;
 
-    List<Room> getAllRooms();
+    List<Room> getAllRooms() throws DAOException;
 
 }
