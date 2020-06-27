@@ -10,7 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class RoomDAOImpl implements RoomDAO {
 
@@ -18,6 +20,7 @@ public class RoomDAOImpl implements RoomDAO {
 
     private final static String SELECT_ALL_ROOMS = "SELECT ROOM.NAME, C.NAME AS Country, LIGHT FROM ROOM" +
             " JOIN COUNTRY C on ROOM.ID_COUNTRY = C.ID";
+    private final static String SELECT_ALL_COUNTRIES = "SELECT NAME FROM COUNTRY";
     private final static String CHANGE_LIGHT_STATUS = "UPDATE ROOM SET LIGHT=? WHERE NAME = ?";
     private final static String CHECK_FREE_NAME = "SELECT NAME FROM ROOM WHERE NAME = ?";
     private final static String INSERT_NEW_ROOM = "INSERT INTO ROOM (NAME, ID_COUNTRY, LIGHT) VALUES(?,?,?)";
@@ -140,4 +143,30 @@ public class RoomDAOImpl implements RoomDAO {
         logger.info(roomList.size());
         return roomList;
     }
+
+    public Set<String> getAllCountries() throws DAOException {
+        Connection con = null;
+        PreparedStatement prepareStatement = null;
+        ResultSet resultSet = null;
+        Set<String> stringSet = new HashSet<>();
+        try {
+            con = connectionPool.takeConnection();
+            prepareStatement = con.prepareStatement(SELECT_ALL_COUNTRIES);
+            resultSet = prepareStatement.executeQuery();
+            while (resultSet.next()) {
+                stringSet.add(resultSet.getString("NAME"));
+            }
+        } catch (SQLException | ConnectionPoolException e) {
+            logger.error(e);
+            throw new DAOException(e);
+        } finally {
+            if (con != null) {
+                connectionPool.closeConnection(con, prepareStatement, resultSet);
+            }
+        }
+        logger.info(stringSet.size());
+        return stringSet;
+    }
+
+
 }

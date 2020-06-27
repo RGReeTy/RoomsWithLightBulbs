@@ -1,7 +1,7 @@
 package net.itspartner.rooms_with_light_bulbs.controller.command.front.impl;
 
 import net.itspartner.rooms_with_light_bulbs.controller.command.front.Command;
-import net.itspartner.rooms_with_light_bulbs.service.ReceiverException;
+import net.itspartner.rooms_with_light_bulbs.service.ServiceException;
 import net.itspartner.rooms_with_light_bulbs.service.RoomService;
 import net.itspartner.rooms_with_light_bulbs.service.factory.ServiceFactory;
 import net.itspartner.rooms_with_light_bulbs.service.util.ConfigurationManager;
@@ -29,7 +29,7 @@ public class ChangeLightStatusCommand implements Command {
 
             roomService.changeLightStatus(value, name);
             forwardToPage(request, response, ConfigurationManager.getProperty("path.page.room"));
-        } catch (ReceiverException e) {
+        } catch (ServiceException e) {
             logger.error(e);
             request.setAttribute("error", e.getMessage());
             response.sendRedirect(ConfigurationManager.getProperty("path.page.index"));

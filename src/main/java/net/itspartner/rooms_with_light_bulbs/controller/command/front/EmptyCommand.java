@@ -1,7 +1,7 @@
-package by.epam.travel_agency.controller.command;
+package net.itspartner.rooms_with_light_bulbs.controller.command.front;
 
-import by.epam.travel_agency.controller.param_name.RequestParameterName;
-import by.epam.travel_agency.service.util.ConfigurationManager;
+
+import net.itspartner.rooms_with_light_bulbs.service.util.ConfigurationManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +19,6 @@ public class EmptyCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        forwardToPage(request, response, ConfigurationManager.getProperty(RequestParameterName.PAGE_MAIN));
+        forwardToPage(request, response, ConfigurationManager.getProperty("path.page.index"));
     }
 }

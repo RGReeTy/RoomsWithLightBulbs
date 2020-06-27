@@ -1,21 +1,21 @@
 package net.itspartner.rooms_with_light_bulbs.service;
 
-public class ReceiverException extends Exception {
+public class ServiceException extends Exception {
 
     private static final long serialVersionUID = 1L;
 
-    public ReceiverException() {
+    public ServiceException() {
     }
 
-    public ReceiverException(String message) {
+    public ServiceException(String message) {
         super(message);
     }
 
-    public ReceiverException(String message, Throwable cause) {
+    public ServiceException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public ReceiverException(Throwable cause) {
+    public ServiceException(Throwable cause) {
         super(cause);
     }
 

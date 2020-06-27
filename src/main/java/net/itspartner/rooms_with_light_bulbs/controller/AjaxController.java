@@ -2,6 +2,7 @@ package net.itspartner.rooms_with_light_bulbs.controller;
 
 
 import net.itspartner.rooms_with_light_bulbs.controller.command.CommandProvider;
+import net.itspartner.rooms_with_light_bulbs.controller.command.ajax.AjaxCommand;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -50,12 +51,12 @@ public class AjaxController extends HttpServlet {
     private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ajaxCommandName = request.getParameter("");
         CommandProvider ajaxCommandProvider = CommandProvider.getInstance();
-        //AjaxCommand ajaxCommand = ajaxCommandProvider.getAjaxCommand(ajaxCommandName.toUpperCase());
+        AjaxCommand ajaxCommand = ajaxCommandProvider.getAjaxCommand(ajaxCommandName.toUpperCase());
 
-        //String jsonAnswer = ajaxCommand.execute(request, response);
-//        PrintWriter out = response.getWriter();
-//        out.print(jsonAnswer);
-//        out.flush();
+        String jsonAnswer = ajaxCommand.execute(request, response);
+        PrintWriter out = response.getWriter();
+        out.print(jsonAnswer);
+        out.flush();
     }
 
     @Override
