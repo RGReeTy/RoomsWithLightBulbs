@@ -36,9 +36,14 @@ public final class ConnectionPool {
         this.password = dbResourceManager.getValue(DB_PASSWORD);
         try {
             this.poolSize = Integer.parseInt(dbResourceManager.getValue(DB_POOL_SIZE));
-            initPool();
-        } catch (NumberFormatException | ConnectionPoolException e) {
+
+        } catch (NumberFormatException e) {
             poolSize = 10;
+        }
+        try {
+            initPool();
+        } catch (ConnectionPoolException e) {
+            e.printStackTrace();
         }
     }
 

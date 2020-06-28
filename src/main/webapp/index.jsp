@@ -20,8 +20,6 @@
                placeholder="Enter 'Country' here"
                pattern="[A-Za-z0-9]{1,}" title="Country"/>
     </div>
-
-
     <div>
         <input type="submit" id="button"
                value="Create new room"/>
