@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class AddNewRoomCommand implements Command {
 
-    private static final Logger logger = Logger.getLogger(AddNewRoomCommand.class);
+    private final static Logger logger = Logger.getLogger(AddNewRoomCommand.class);
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -27,6 +27,7 @@ public class AddNewRoomCommand implements Command {
             String name = request.getParameter("name");
             String id_country = request.getParameter("id_country");
             logger.info("AddNewRoomCommand: name=" + name + ", id_country=" + id_country);
+            System.out.println("AddNewRoomCommand: name=" + name + ", id_country=" + id_country);
 
             Room room = new Room();
             room.setRoomsName(name);
@@ -37,8 +38,7 @@ public class AddNewRoomCommand implements Command {
             } else {
                 request.setAttribute("error", "The room '" + name + "' is already exist!");
             }
-            forwardToPage(request, response, request.getContextPath());
-            //ConfigurationManager.getProperty("path.page.room"));
+            forwardToPage(request, response, request.getContextPath() + ConfigurationManager.getProperty("path.page.index"));
         } catch (ServiceException e) {
             logger.error(e);
             request.setAttribute("error", e.getMessage());

@@ -3,8 +3,8 @@ package net.itspartner.rooms_with_light_bulbs.controller;
 
 import net.itspartner.rooms_with_light_bulbs.controller.command.CommandProvider;
 import net.itspartner.rooms_with_light_bulbs.controller.command.ajax.AjaxCommand;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -20,7 +20,7 @@ import java.io.PrintWriter;
 public class AjaxController extends HttpServlet {
 
 
-    private static Logger logger = LogManager.getLogger();
+    private static Logger logger = LogManager.getLogger(AjaxController.class);
 
     @Override
     public void init() throws ServletException {

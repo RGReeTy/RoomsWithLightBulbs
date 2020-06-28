@@ -20,6 +20,8 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public boolean addNewRoom(Room room) throws ServiceException {
+        logger.info("addNewRoom start");
+
         try {
             return roomDao.addNewRoom(room);
         } catch (DAOException e) {
@@ -29,6 +31,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public boolean checkIsRoomNameFree(String name) throws ServiceException {
+        logger.info("checkIsRoomNameFree start");
         try {
             return roomDao.checkIsRoomNameFree(name);
         } catch (DAOException e) {

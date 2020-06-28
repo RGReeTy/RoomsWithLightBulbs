@@ -47,7 +47,11 @@ public class RoomDAOImpl implements RoomDAO {
             pstmt = conn.prepareStatement(INSERT_NEW_ROOM);
             pstmt.setString(1, room.getRoomsName());
             pstmt.setString(2, room.getCountry());
-            pstmt.setBoolean(3, room.isLightStatus());
+            if (room.isLightStatus()) {
+                pstmt.setInt(3, 1);
+            } else {
+                pstmt.setInt(3, 0);
+            }
 
             int count = pstmt.executeUpdate();
             if (count == 1) {
@@ -67,6 +71,8 @@ public class RoomDAOImpl implements RoomDAO {
 
     @Override
     public boolean checkIsRoomNameFree(String name) throws DAOException {
+        logger.info("checkIsRoomNameFree at dao start");
+
         boolean isFree = true;
         Connection connection = null;
         PreparedStatement prepareStatement = null;
