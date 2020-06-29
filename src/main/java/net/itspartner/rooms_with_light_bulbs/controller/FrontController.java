@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/Controller")
+@WebServlet(urlPatterns = "/Controller", name = "FrontController")
 @MultipartConfig
 public class FrontController extends HttpServlet {
 
@@ -24,7 +24,7 @@ public class FrontController extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String commandName = request.getParameter("action");
+        String commandName = request.getParameter("command");
         CommandProvider commandProvider = CommandProvider.getInstance();
         Command command = commandProvider.getFrontCommand(commandName);
         command.execute(request, response);

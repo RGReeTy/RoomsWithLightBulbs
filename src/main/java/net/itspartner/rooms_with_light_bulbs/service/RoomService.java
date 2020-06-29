@@ -18,4 +18,6 @@ public interface RoomService {
 
     Set<String> getAllCountries() throws ServiceException;
 
+    int getIdOfCountryByName(String country) throws ServiceException;
+
 }

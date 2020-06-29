@@ -2,7 +2,7 @@ package net.itspartner.rooms_with_light_bulbs.controller.command;
 
 import net.itspartner.rooms_with_light_bulbs.controller.command.ajax.AjaxCommand;
 import net.itspartner.rooms_with_light_bulbs.controller.command.ajax.AjaxCommandName;
-import net.itspartner.rooms_with_light_bulbs.controller.command.ajax.impl.AddCountry;
+import net.itspartner.rooms_with_light_bulbs.controller.command.ajax.impl.GetAllCountries;
 import net.itspartner.rooms_with_light_bulbs.controller.command.front.Command;
 import net.itspartner.rooms_with_light_bulbs.controller.command.front.CommandName;
 import net.itspartner.rooms_with_light_bulbs.controller.command.front.EmptyCommand;
@@ -32,7 +32,7 @@ public final class CommandProvider {
         frontRepository.put(CommandName.WRONG_COMMAND, new EmptyCommand());
 
 
-        ajaxRepository.put(AjaxCommandName.ADD_COUNTRY, new AddCountry());
+        ajaxRepository.put(AjaxCommandName.ALL_COUNTRIES, new GetAllCountries());
 
 
     }

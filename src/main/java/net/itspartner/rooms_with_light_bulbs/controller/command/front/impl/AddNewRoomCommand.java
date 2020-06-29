@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static net.itspartner.rooms_with_light_bulbs.service.validation.SimpleValidator.isNumber;
+
 
 public class AddNewRoomCommand implements Command {
 
@@ -25,24 +27,32 @@ public class AddNewRoomCommand implements Command {
 
         try {
             String name = request.getParameter("name");
-            String id_country = request.getParameter("id_country");
-            logger.info("AddNewRoomCommand: name=" + name + ", id_country=" + id_country);
-            System.out.println("AddNewRoomCommand: name=" + name + ", id_country=" + id_country);
+            String country = request.getParameter("country");
+            logger.info("AddNewRoomCommand: name=" + name + ", country=" + country);
 
-            Room room = new Room();
-            room.setRoomsName(name);
-            room.setCountry(id_country);
-            room.setLightStatus(false);
-            if (roomService.checkIsRoomNameFree(name)) {
-                roomService.addNewRoom(room);
+            if (name == null || country == null) {
+                request.setAttribute("error", "Title or country of room is not defined!");
             } else {
-                request.setAttribute("error", "The room '" + name + "' is already exist!");
+                if (!isNumber(country)) {
+                    country = String.valueOf(roomService.getIdOfCountryByName(country));
+                }
+                Room room = new Room();
+
+                room.setRoomsName(name);
+                room.setCountry(country);
+                room.setLightStatus(false);
+
+                if (roomService.checkIsRoomNameFree(name)) {
+                    roomService.addNewRoom(room);
+                } else {
+                    request.setAttribute("error", "The room '" + name + "' is already exist!");
+                }
             }
-            forwardToPage(request, response, request.getContextPath() + ConfigurationManager.getProperty("path.page.index"));
+            forwardToPage(request, response, ConfigurationManager.getProperty("path.page.index"));
         } catch (ServiceException e) {
             logger.error(e);
             request.setAttribute("error", e.getMessage());
-            response.sendRedirect(ConfigurationManager.getProperty("path.page.index"));
+            response.sendRedirect(ConfigurationManager.getProperty(request.getContextPath()));
         }
 
     }

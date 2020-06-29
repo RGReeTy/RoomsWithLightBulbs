@@ -24,6 +24,7 @@ public class RoomDAOImpl implements RoomDAO {
     private final static String CHANGE_LIGHT_STATUS = "UPDATE ROOM SET LIGHT=? WHERE NAME = ?";
     private final static String CHECK_FREE_NAME = "SELECT NAME FROM ROOM WHERE NAME = ?";
     private final static String INSERT_NEW_ROOM = "INSERT INTO ROOM (NAME, ID_COUNTRY, LIGHT) VALUES(?,?,?)";
+    private final static String SELECT_ID_COUNTRY_BY_NAME = "SELECT ID FROM COUNTRY WHERE NAME = ?";
 
 
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -85,7 +86,7 @@ public class RoomDAOImpl implements RoomDAO {
             if (resultSet.next()) {
                 isFree = false;
             } else {
-                logger.error("resultSet is null");
+                logger.info("Name of room is free '" + name + "'");
             }
         } catch (SQLException | ConnectionPoolException e) {
             logger.error("Can't select user by login. " + e);
@@ -174,5 +175,30 @@ public class RoomDAOImpl implements RoomDAO {
         return stringSet;
     }
 
+    @Override
+    public int getIdOfCountryByName(String country) throws DAOException {
+        Connection con = null;
+        PreparedStatement prepareStatement = null;
+        ResultSet resultSet = null;
+        int id = 0;
+        try {
+            con = connectionPool.takeConnection();
+            prepareStatement = con.prepareStatement(SELECT_ID_COUNTRY_BY_NAME);
+            prepareStatement.setString(1, country);
+            resultSet = prepareStatement.executeQuery();
+            while (resultSet.next()) {
+                id = resultSet.getInt("ID");
+            }
+        } catch (SQLException | ConnectionPoolException e) {
+            logger.error(e);
+            throw new DAOException(e);
+        } finally {
+            if (con != null) {
+                connectionPool.closeConnection(con, prepareStatement, resultSet);
+            }
+        }
+
+        return id;
+    }
 
 }
