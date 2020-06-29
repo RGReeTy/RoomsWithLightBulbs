@@ -30,41 +30,6 @@
             }
         }
 
-        // let arr = response[0];
-        //  for(let i in arr){
-        //     $("<option>").val(i).text(i).appendTo($select);
-        // }
-        // let data = response.toString();
-        // console.log(data);
-        // console.log("-----------------------------");
-        // console.log(response);
-
-
-        //     $.each(response, function (key, value) {
-        //     $("<option>").val(value.id).text(value.name).appendTo($select);
-        // });
-
-
-        // for (i in data.countries){
-        //     $("<option>").val(countries.id).text(countries.name).appendTo($select);
-        //     $('<option>').val(key).text(value).appendTo($("#selectRegion"));
-        // }
-
-
-        <%--async function fetchData() {--%>
-
-        <%--    const response = await fetch('http://localhost:3000/users/');--%>
-        <%--    const data = await response.json();--%>
-
-        <%--    data.forEach(obj => {--%>
-        <%--        Object.entries(obj).forEach(([key, value]) => {--%>
-        <%--            console.log(`${key} ${value}`);--%>
-        <%--        });--%>
-        <%--        console.log('-------------------');--%>
-        <%--    });--%>
-        <%--};--%>
-
-
         //         $(document).ready(function () {
         //             $('#selectState').on('change', function () {
         // //do something here
@@ -93,26 +58,6 @@
     </script>
 </head>
 <body>
-
-<form class="" method="POST" action="Controller">
-    <div>
-        <input name="command" type="hidden" value="ADD_NEW_ROOM"/>
-    </div>
-    <div>
-        <input type="text" name="name"
-               placeholder="Enter room's 'Title' here"
-               pattern="[A-Za-z0-9]{1,}" title="name"/>
-    </div>
-    <div>
-        <input type="text" name="id_country"
-               placeholder="Enter 'Country' here"
-               pattern="[A-Za-z0-9]{1,}" title="Country"/>
-    </div>
-    <div>
-        <input type="submit" id="button"
-               value="Create new room"/>
-    </div>
-</form>
 
 <div align="center">
     <form class="" method="POST" action="Controller" onclick="loadAllCountries()">
