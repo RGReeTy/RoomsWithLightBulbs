@@ -48,11 +48,11 @@ public class AddNewRoomCommand implements Command {
                     request.setAttribute("error", "The room '" + name + "' is already exist!");
                 }
             }
-            forwardToPage(request, response, ConfigurationManager.getProperty("path.page.index"));
+            forwardToPage(request, response, ConfigurationManager.getProperty(request.getContextPath()));
         } catch (ServiceException e) {
             logger.error(e);
             request.setAttribute("error", e.getMessage());
-            response.sendRedirect(ConfigurationManager.getProperty(request.getContextPath()));
+            response.sendRedirect(request.getContextPath());
         }
 
     }

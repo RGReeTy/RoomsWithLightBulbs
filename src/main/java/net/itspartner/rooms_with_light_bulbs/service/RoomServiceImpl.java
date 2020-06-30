@@ -30,12 +30,8 @@ public class RoomServiceImpl implements RoomService {
             } catch (DAOException e) {
                 throw new ServiceException(e);
             }
-        }
-
-        try {
-            return roomDao.addNewRoom(room);
-        } catch (DAOException e) {
-            throw new ServiceException(e);
+        } else {
+            return false;
         }
     }
 
