@@ -7,7 +7,6 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script>
         let working = false;
-
         async function loadAllCountries() {
             if (working) {
                 return false;
@@ -40,18 +39,18 @@
                     url: '/RoomsWithLightBulbs/ajax?command=ALL_ROOMS',
                     dataType: "json",
                     success: function (data) {
-                        let trHTML = '<tr>\n' +
-                            '            <th>Title</th>\n' +
-                            '            <th>Country</th>\n' +
-                            '            <th>Light is</th>\n' +
-                            '            <th>Button</th>\n' +
+                        let trHTML = '<tr>' +
+                            '            <th>Title</th>\t' +
+                            '            <th>Country</th>\t' +
+                            '            <th>Light is</th>\t' +
+                            '            <th>Button</th>\t' +
                             '        </tr>';
                         for (let i in data.roomList) {
                             trHTML += '<tr><td>' + data.roomList[i].roomsName +
-                                '</td><td>' + data.roomList[i].country +
-                                '</td><td>' + data.roomList[i].lightStatus +
-                                '</td><td>' + "Button" +
-                                '</td></tr>';
+                                '\t</td><td>' + data.roomList[i].country +
+                                '\t</td><td>' + data.roomList[i].lightStatus +
+                                '\t</td><td>' + "Button" +
+                                '\t</td></tr>';
                         }
                         $("#show2").append(trHTML);
                     },
