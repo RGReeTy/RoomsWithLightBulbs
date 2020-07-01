@@ -37,13 +37,13 @@
 
 
 <div class="dataTable_wrapper" align="center">
-    <form class="form-inline">
+    <form>
         <div class="btn-group">
             <button type="submit" id="btnSubmit">Load all rooms
             </button>
         </div>
     </form>
-    <table id="show2">
+    <table id="show2" class="edit">
     </table>
 </div>
 
