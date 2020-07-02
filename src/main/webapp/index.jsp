@@ -5,7 +5,15 @@
 <head>
     <title>Rooms with Light Bulbs</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+    <style>
+        .poup {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            margin: 0 auto;
+            margin-top: 250px;
+        }
+    </style>
 </head>
 <body>
 
@@ -46,6 +54,19 @@
     <table id="show2" class="edit">
     </table>
 </div>
+
+<span class="openwnd">Open</span>
+<div class="poup" style="display:none;">
+    <div id="text">
+        Light is ON = <a id="switch" href="#"><span></span></a>
+    </div>
+    <%--<button type="submit" class="submit">Change value</button>--%>
+    <br>
+    <button type="submit" class="close">Close</button>
+</div>
+
+
+
 
 <script src="resources/js/scripts.js"></script>
 </body>

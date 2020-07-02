@@ -24,11 +24,13 @@ async function loadAllCountries() {
     }
 }
 
-let roomList;
+
 $(document).ready(function () {
     $("#btnSubmit").click(function (e) {
         e.preventDefault();
         $("#show2").find("tr").remove();
+        $("#show2").find("tbody").remove();
+        $("#show2").find("thead").remove();
         $.ajax({
             type: 'POST',
             url: '/RoomsWithLightBulbs/ajax?command=ALL_ROOMS',
@@ -40,7 +42,6 @@ $(document).ready(function () {
                     '            <th>Light is</th>\t' +
                     '            <th>Button</th>\t' +
                     '        </tr></thead><tbody>';
-                roomList = data;
                 for (let i in data.roomList) {
                     trHTML += '<tr class=\"temp\"><td class=\"roomsName\">' + data.roomList[i].roomsName +
                         '\t</td><td class=\"country\">' + data.roomList[i].country +
@@ -60,6 +61,52 @@ $(document).ready(function () {
 });
 
 
+let localRoomName;
+let localCountry;
+let localLight;
+$(document).ready(function () {
+    $("#show2").on('click', '#showRoom', function () {
+        let currentRow = $(this).closest("tr");
+
+        localRoomName = currentRow.find(".roomsName").text();
+        localCountry = currentRow.find(".country").text();
+        localLight = currentRow.find(".lightStatus").text();
+        //let data = localRoomName + "\n" + localCountry + "\n" + localLight;
+        //alert(data);
+    });
+});
+
+
+async function enterTheRoom(roomName, roomCountry, light) {
+    if (usersCountry === roomCountry.toUpperCase().trim()) {
+        window.open('Room.html?light=' + light, roomName, 'height=200,width=300,0,status=0');
+
+        //let myWindow1 = window.open('Room.html', roomName, 'height=200,width=300,0,status=0');
+
+//         myWindow1.document.write('<!DOCTYPE html>\n\
+// <title>' + roomName + '</title><head><script>function changeValue(light) {' +
+//             'if(light ===true) {light=false} else {light=true}' +
+//             'window.parent.changeValue()}</script></head>' +
+//             '<p>The light is on = ' + light + '<button onclick="changeValue(light);">Change value"</button>' +
+//             '<button onclick="window.parent.changeValue();">Change value"</button>' +
+//             '<scr' + 'ipt></scr' + 'ipt>');
+    } else {
+        alert("You can't enter this room!");
+    }
+}
+
+function changeValue() {
+    return localLight = localLight !== true;
+
+}
+
+function myWindow() {
+    //window.opener.document.getElementsByClassName("lightStatus").innerHTML = "Нажать";
+    myWindow().close();
+}
+
+
+let usersCountry;
 //jquery to find user's country by ip
 $('body').on('click', '#showRoom', function (event) {
     event.preventDefault();
@@ -68,8 +115,9 @@ $('body').on('click', '#showRoom', function (event) {
         dataType: "jsonp",
         jsonpCallback: "geoip",
         success: function (data) {
-            usersCountry = data.country;
+            usersCountry = data.country.toUpperCase().trim();
             console.log(usersCountry);
+            enterTheRoom(localRoomName, localCountry, localLight);
         },
         error: function () {
             $(this).replaceWith("Problem to find where are you from..")
@@ -79,42 +127,28 @@ $('body').on('click', '#showRoom', function (event) {
 
 
 $(document).ready(function () {
-    $("#show2").on('click', '#showRoom', function () {
-        let currentRow = $(this).closest("tr");
+    $('.openwnd').click(function () {
+        $('.poup').fadeIn();
+        //$("#text span").remove();
+        $("#text span").append(localLight);
+    });
+    $('.poup .close').click(function () {
+        $('.poup').fadeOut();
+    });
+    $('.poup .submit').click(function () {
+        //$("#text span").replaceWith("Light is ON = " + changeValue());
 
-        let col1 = currentRow.find(".roomsName").text();
-        let col2 = currentRow.find(".country").text();
-        let col3 = currentRow.find(".lightStatus").text();
-        let data = col1 + "\n" + col2 + "\n" + col3;
-
-        alert(data);
+        // alert("Нажата кнопка ''Действие ")
     });
 });
 
 
-async function enterTheRoom(roomName, roomCountry, light) {
-    let usersCountry = 'POLAND';
-    $.ajax({
-        url: "https://get.geojs.io/v1/ip/geo.js",
-        dataType: "jsonp",
-        jsonpCallback: "geoip",
-        success: function (data) {
-            console.log("user country = " + data.country);
-            usersCountry = data.country;
-            console.log("user's country = " + usersCountry);
+window.onload = function () {
+    let a = document.getElementById('switch');
+    a.onclick = function () {
+        if (this.innerHTML == 'true') this.innerHTML = 'false';
+        else this.innerHTML = 'true';
+        return false;
+    }
+};
 
-            if (usersCountry !== roomCountry) {
-                alert("You can't enter this room!");
-            } else {
-                var myWindow1 = window.open('', roomName, 'height=200,width=500');
-                myWindow1.document.write('<!DOCTYPE html>\n\
-<title>' + roomName + '</title>\n\
-<p>Light is ' + light + '<button onclick="myWindow2();">Изменить текст кнопки с "Открыть" на "Нажать"</button>\n\
-<scr' + 'ipt>function myWindow2() {window.opener.document.getElementById("showRoom").innerHTML = "Нажать"; window.close();}</scr' + 'ipt>');
-            }
-        }
-
-    });
-
-
-}
