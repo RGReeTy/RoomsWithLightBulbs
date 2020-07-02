@@ -68,6 +68,15 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    public Room getRoomInfo(String name) throws ServiceException {
+        try {
+            return roomDao.getRoomInfo(name);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
     public Set<String> getAllCountries() throws ServiceException {
         try {
             return roomDao.getAllCountries();

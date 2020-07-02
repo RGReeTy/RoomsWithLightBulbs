@@ -26,6 +26,8 @@ public class RoomDAOImpl implements RoomDAO {
     private final static String CHECK_FREE_NAME = "SELECT NAME FROM ROOM WHERE NAME = ?";
     private final static String INSERT_NEW_ROOM = "INSERT INTO ROOM (NAME, ID_COUNTRY, LIGHT) VALUES(?,?,?)";
     private final static String SELECT_ID_COUNTRY_BY_NAME = "SELECT ID FROM COUNTRY WHERE NAME = ?";
+    private final static String SELECT_ROOM_BY_NAME = "SELECT ROOM.NAME, C.NAME AS Country, LIGHT FROM ROOM" +
+            " JOIN COUNTRY C on ROOM.ID_COUNTRY = C.ID WHERE ROOM.NAME = ?";
 
 
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -156,6 +158,35 @@ public class RoomDAOImpl implements RoomDAO {
         return roomList;
     }
 
+    @Override
+    public Room getRoomInfo(String name) throws DAOException {
+        Connection con = null;
+        PreparedStatement prepareStatement = null;
+        ResultSet resultSet = null;
+        Room room = new Room();
+        try {
+            con = connectionPool.takeConnection();
+            prepareStatement = con.prepareStatement(SELECT_ROOM_BY_NAME);
+            prepareStatement.setString(1, name);
+            resultSet = prepareStatement.executeQuery();
+            while (resultSet.next()) {
+                room.setRoomsName(resultSet.getString("NAME"));
+                room.setCountry(resultSet.getString("COUNTRY"));
+                room.setLightStatus(resultSet.getBoolean("LIGHT"));
+            }
+        } catch (SQLException | ConnectionPoolException e) {
+            logger.error(e);
+            throw new DAOException(e);
+        } finally {
+            if (con != null) {
+                connectionPool.closeConnection(con, prepareStatement, resultSet);
+            }
+        }
+        logger.info(room);
+        return room;
+    }
+
+    @Override
     public Set<String> getAllCountries() throws DAOException {
         Connection con = null;
         PreparedStatement prepareStatement = null;

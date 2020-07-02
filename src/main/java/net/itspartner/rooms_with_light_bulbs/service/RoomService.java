@@ -16,6 +16,8 @@ public interface RoomService {
 
     List<Room> getAllRooms() throws ServiceException;
 
+    Room getRoomInfo(String name) throws ServiceException;
+
     Set<String> getAllCountries() throws ServiceException;
 
     int getIdOfCountryByName(String country) throws ServiceException;

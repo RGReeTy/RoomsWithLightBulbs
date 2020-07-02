@@ -5,6 +5,7 @@ import net.itspartner.rooms_with_light_bulbs.controller.command.ajax.AjaxCommand
 import net.itspartner.rooms_with_light_bulbs.controller.command.ajax.impl.ChangeLightStatusCommand;
 import net.itspartner.rooms_with_light_bulbs.controller.command.ajax.impl.GetAllCountries;
 import net.itspartner.rooms_with_light_bulbs.controller.command.ajax.impl.GetAllRooms;
+import net.itspartner.rooms_with_light_bulbs.controller.command.ajax.impl.GetRoomInfoCommand;
 import net.itspartner.rooms_with_light_bulbs.controller.command.front.Command;
 import net.itspartner.rooms_with_light_bulbs.controller.command.front.CommandName;
 import net.itspartner.rooms_with_light_bulbs.controller.command.front.EmptyCommand;
@@ -33,6 +34,7 @@ public final class CommandProvider {
         ajaxRepository.put(AjaxCommandName.ALL_COUNTRIES, new GetAllCountries());
         ajaxRepository.put(AjaxCommandName.ALL_ROOMS, new GetAllRooms());
         ajaxRepository.put(AjaxCommandName.CHANGE_LIGHT_STATUS, new ChangeLightStatusCommand());
+        ajaxRepository.put(AjaxCommandName.UPDATE_ROOM, new GetRoomInfoCommand());
 
 
     }

@@ -64,7 +64,6 @@ $(document).ready(function () {
 let localRoomName;
 let localCountry;
 let localLight;
-let localLightForEq;
 let currentRow;
 $(document).ready(function () {
     $("#show2").on('click', '#showRoom', function () {
@@ -73,19 +72,22 @@ $(document).ready(function () {
         localRoomName = currentRow.find(".roomsName").text();
         localCountry = currentRow.find(".country").text();
         localLight = currentRow.find(".lightStatus").text();
-        localLightForEq = currentRow.find(".lightStatus").text();
         let data = localRoomName + "\n" + localCountry + "\n" + localLight;
         console.log(data);
     });
 });
 
-let myele;//for hide buttons when room is open
+let buttons;//for hide buttons when room is open
 async function enterTheRoom(roomName, roomCountry, light) {
     if (usersCountry === roomCountry.toUpperCase().trim()) {
         $('.poup').fadeIn();
         $("#text span").append(localLight);
-        myele =  $(".showRoom");
-        myele.hide();
+        buttons = $(".showRoom");
+        buttons.hide();
+
+        while ($(buttons).is(":hidden")) {
+            setTimeout(executeUpdateRow(), 5000);
+        }
     } else {
         alert("You can't enter this room!");
     }
@@ -114,7 +116,7 @@ $('body').on('click', '#showRoom', function (event) {
 $(document).ready(function () {
     $('.poup .close').click(function () {
         $('.poup').fadeOut();
-        myele.show();
+        buttons.show();
     });
 });
 
@@ -144,9 +146,35 @@ async function sendLightStatus() {
         success: function (resp) {
             //alert("Changing light status saved into database");
         },
+
         error: function () {
             console.log('Service call failed!');
         }
     });
+}
+
+function executeUpdateRow() {
+    $.ajax({
+        type: "GET",
+        url: '/RoomsWithLightBulbs/ajax',
+        data: "command=UPDATE_ROOM&localRoomName=" + localRoomName,
+        success: function (data) {
+            let tempRoomName = data.room[0].roomsName;
+            let tempCountry = data.room[0].country;
+            let tempLight = data.room[0].lightStatus;
+
+            let print = tempRoomName + "+" + tempCountry + "+" + tempLight;
+            console.log(print);
+
+            if (tempLight !== localLight) {
+                currentRow.find(".lightStatus").text(tempLight);
+            }
+        },
+        complete: function () {
+            // Schedule the next request when the current one's complete
+            setTimeout(executeUpdateRow, 5000);
+        }
+    });
+    setTimeout(executeUpdateRow, 5000);
 }
 

@@ -15,6 +15,8 @@ public interface RoomDAO {
 
     List<Room> getAllRooms() throws DAOException;
 
+    Room getRoomInfo(String name) throws DAOException;
+
     Set<String> getAllCountries() throws DAOException;
 
     int getIdOfCountryByName(String country) throws DAOException;
