@@ -2,13 +2,13 @@ package net.itspartner.rooms_with_light_bulbs.controller.command;
 
 import net.itspartner.rooms_with_light_bulbs.controller.command.ajax.AjaxCommand;
 import net.itspartner.rooms_with_light_bulbs.controller.command.ajax.AjaxCommandName;
+import net.itspartner.rooms_with_light_bulbs.controller.command.ajax.impl.ChangeLightStatusCommand;
 import net.itspartner.rooms_with_light_bulbs.controller.command.ajax.impl.GetAllCountries;
 import net.itspartner.rooms_with_light_bulbs.controller.command.ajax.impl.GetAllRooms;
 import net.itspartner.rooms_with_light_bulbs.controller.command.front.Command;
 import net.itspartner.rooms_with_light_bulbs.controller.command.front.CommandName;
 import net.itspartner.rooms_with_light_bulbs.controller.command.front.EmptyCommand;
 import net.itspartner.rooms_with_light_bulbs.controller.command.front.impl.AddNewRoomCommand;
-import net.itspartner.rooms_with_light_bulbs.controller.command.front.impl.ChangeLightStatusCommand;
 import org.apache.log4j.Logger;
 
 import java.util.HashMap;
@@ -27,12 +27,12 @@ public final class CommandProvider {
 
     private CommandProvider() {
         frontRepository.put(CommandName.ADD_NEW_ROOM, new AddNewRoomCommand());
-        frontRepository.put(CommandName.CHANGE_LIGHT_STATUS, new ChangeLightStatusCommand());
         frontRepository.put(CommandName.WRONG_COMMAND, new EmptyCommand());
 
 
         ajaxRepository.put(AjaxCommandName.ALL_COUNTRIES, new GetAllCountries());
         ajaxRepository.put(AjaxCommandName.ALL_ROOMS, new GetAllRooms());
+        ajaxRepository.put(AjaxCommandName.CHANGE_LIGHT_STATUS, new ChangeLightStatusCommand());
 
 
     }

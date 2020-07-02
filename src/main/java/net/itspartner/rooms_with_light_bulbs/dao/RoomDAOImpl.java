@@ -14,6 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+
 public class RoomDAOImpl implements RoomDAO {
 
     private static final Logger logger = Logger.getLogger(RoomDAOImpl.class);
@@ -21,7 +22,7 @@ public class RoomDAOImpl implements RoomDAO {
     private final static String SELECT_ALL_ROOMS = "SELECT ROOM.NAME, C.NAME AS Country, LIGHT FROM ROOM" +
             " JOIN COUNTRY C on ROOM.ID_COUNTRY = C.ID";
     private final static String SELECT_ALL_COUNTRIES = "SELECT NAME FROM COUNTRY";
-    private final static String CHANGE_LIGHT_STATUS = "UPDATE ROOM SET LIGHT=? WHERE NAME = ?";
+    private final static String CHANGE_LIGHT_STATUS = "UPDATE ROOM SET LIGHT = (?) WHERE NAME = ?";
     private final static String CHECK_FREE_NAME = "SELECT NAME FROM ROOM WHERE NAME = ?";
     private final static String INSERT_NEW_ROOM = "INSERT INTO ROOM (NAME, ID_COUNTRY, LIGHT) VALUES(?,?,?)";
     private final static String SELECT_ID_COUNTRY_BY_NAME = "SELECT ID FROM COUNTRY WHERE NAME = ?";
@@ -102,6 +103,8 @@ public class RoomDAOImpl implements RoomDAO {
 
     @Override
     public void changeLightStatus(int value, String name) throws DAOException {
+        logger.info("value " + value + " room = " + name + "!");
+
         Connection connection = null;
         PreparedStatement prepareStatement = null;
         try {
@@ -111,6 +114,8 @@ public class RoomDAOImpl implements RoomDAO {
             prepareStatement.setString(2, name);
             if (prepareStatement.executeUpdate() != 1) {
                 throw new DAOException("Error at update DB");
+            } else {
+                logger.info("Update row succesfull!");
             }
         } catch (SQLException | ConnectionPoolException e) {
             logger.error("Operation UPDATE is broke: " + e);

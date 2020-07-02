@@ -64,15 +64,18 @@ $(document).ready(function () {
 let localRoomName;
 let localCountry;
 let localLight;
+let localLightForEq;
+let currentRow;
 $(document).ready(function () {
     $("#show2").on('click', '#showRoom', function () {
-        let currentRow = $(this).closest("tr");
+        currentRow = $(this).closest("tr");
 
         localRoomName = currentRow.find(".roomsName").text();
         localCountry = currentRow.find(".country").text();
         localLight = currentRow.find(".lightStatus").text();
-        //let data = localRoomName + "\n" + localCountry + "\n" + localLight;
-        //alert(data);
+        localLightForEq = currentRow.find(".lightStatus").text();
+        let data = localRoomName + "\n" + localCountry + "\n" + localLight;
+        console.log(data);
     });
 });
 
@@ -86,10 +89,6 @@ async function enterTheRoom(roomName, roomCountry, light) {
     }
 }
 
-function changeValue() {
-    return localLight = localLight !== true;
-
-}
 
 let usersCountry;
 //jquery to find user's country by ip
@@ -111,6 +110,32 @@ $('body').on('click', '#showRoom', function (event) {
 });
 
 
+// $(document).ready(function () {
+//     $('.poup .close').click(function () {
+//         $('.poup').fadeOut();
+//
+//         console.log("localLightForEq = " + localLightForEq + "; localLight = " + localLight + " == " + localLightForEq === localLight);
+//         if (localLightForEq !== localLight) {
+//             let dataToSend = new FormData();
+//             dataToSend.append("command", "CHANGE_LIGHT_STATUS");
+//             dataToSend.append("localRoomName", localRoomName);
+//             dataToSend.append("localLight", localLight);
+//             let response = fetch("/RoomsWithLightBulbs/ajax", {
+//                 method: 'POST',
+//                 body: dataToSend,
+//             });
+//
+//             if (response.ok) {
+//                 alert("Changing light status saved into database");
+//             } else {
+//                 alert("ERROR: " + response.status);
+//             }
+//         } else {
+//             alert("Nothing to send!");
+//         }
+//     });
+// });
+
 $(document).ready(function () {
     $('.poup .close').click(function () {
         $('.poup').fadeOut();
@@ -123,10 +148,29 @@ window.onload = function () {
     a.onclick = function () {
         if (this.innerHTML == 'true') {
             this.innerHTML = 'false';
+            localLight = false;
+            currentRow.find(".lightStatus").text('false');
         } else {
             this.innerHTML = 'true';
+            localLight = true;
+            currentRow.find(".lightStatus").text('true');
         }
+        sendLightStatus();
         return false;
     }
 };
+
+async function sendLightStatus() {
+    $.ajax({
+        type: "POST",
+        url: "/RoomsWithLightBulbs/ajax",
+        data: "command=CHANGE_LIGHT_STATUS&localRoomName=" + localRoomName + "&localLight=" + localLight,
+        success: function (resp) {
+            //alert("Changing light status saved into database");
+        },
+        error: function () {
+            console.log('Service call failed!');
+        }
+    });
+}
 

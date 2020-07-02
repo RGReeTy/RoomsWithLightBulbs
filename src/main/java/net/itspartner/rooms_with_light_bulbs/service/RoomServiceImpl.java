@@ -46,8 +46,12 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public void changeLightStatus(int value, String name) throws ServiceException {
+    public void changeLightStatus(boolean status, String name) throws ServiceException {
         try {
+            int value = 0;
+            if (status) {
+                value = 1;
+            }
             roomDao.changeLightStatus(value, name);
         } catch (DAOException e) {
             throw new ServiceException(e);

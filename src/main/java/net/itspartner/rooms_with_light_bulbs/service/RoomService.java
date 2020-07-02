@@ -12,7 +12,7 @@ public interface RoomService {
 
     boolean checkIsRoomNameFree(String name) throws ServiceException;
 
-    void changeLightStatus(int value, String name) throws ServiceException;
+    void changeLightStatus(boolean status, String name) throws ServiceException;
 
     List<Room> getAllRooms() throws ServiceException;
 
