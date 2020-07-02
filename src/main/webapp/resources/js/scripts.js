@@ -129,7 +129,7 @@ $('body').on('click', '#showRoom', function (event) {
 $(document).ready(function () {
     $('.openwnd').click(function () {
         $('.poup').fadeIn();
-        //$("#text span").remove();
+       // $("#text span").remove();
         $("#text span").append(localLight);
     });
     $('.poup .close').click(function () {
