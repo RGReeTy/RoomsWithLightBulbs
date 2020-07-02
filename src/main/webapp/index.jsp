@@ -8,10 +8,11 @@
     <style>
         .poup {
             width: 200px;
-            height: 200px;
+            height: 100px;
             border: 1px solid black;
             margin: 0 auto;
             margin-top: 250px;
+            align-content: center;
         }
     </style>
 </head>
@@ -42,7 +43,15 @@
 </div>
 <br>
 <hr>
-
+<%--<span class="openwnd">Open</span>--%>
+<div class="poup" style="display:none;">
+    <div id="text">
+        Light is ON = <a id="switch" href="#"><span></span></a>
+    </div>
+    <br>
+    <button type="submit" class="close">Close</button>
+</div>
+<br>
 
 <div class="dataTable_wrapper" align="center">
     <form>
@@ -54,18 +63,6 @@
     <table id="show2" class="edit">
     </table>
 </div>
-
-<span class="openwnd">Open</span>
-<div class="poup" style="display:none;">
-    <div id="text">
-        Light is ON = <a id="switch" href="#"><span></span></a>
-    </div>
-    <%--<button type="submit" class="submit">Change value</button>--%>
-    <br>
-    <button type="submit" class="close">Close</button>
-</div>
-
-
 
 
 <script src="resources/js/scripts.js"></script>

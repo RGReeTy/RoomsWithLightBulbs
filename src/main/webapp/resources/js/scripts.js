@@ -79,17 +79,8 @@ $(document).ready(function () {
 
 async function enterTheRoom(roomName, roomCountry, light) {
     if (usersCountry === roomCountry.toUpperCase().trim()) {
-        window.open('Room.html?light=' + light, roomName, 'height=200,width=300,0,status=0');
-
-        //let myWindow1 = window.open('Room.html', roomName, 'height=200,width=300,0,status=0');
-
-//         myWindow1.document.write('<!DOCTYPE html>\n\
-// <title>' + roomName + '</title><head><script>function changeValue(light) {' +
-//             'if(light ===true) {light=false} else {light=true}' +
-//             'window.parent.changeValue()}</script></head>' +
-//             '<p>The light is on = ' + light + '<button onclick="changeValue(light);">Change value"</button>' +
-//             '<button onclick="window.parent.changeValue();">Change value"</button>' +
-//             '<scr' + 'ipt></scr' + 'ipt>');
+        $('.poup').fadeIn();
+        $("#text span").append(localLight);
     } else {
         alert("You can't enter this room!");
     }
@@ -99,12 +90,6 @@ function changeValue() {
     return localLight = localLight !== true;
 
 }
-
-function myWindow() {
-    //window.opener.document.getElementsByClassName("lightStatus").innerHTML = "Нажать";
-    myWindow().close();
-}
-
 
 let usersCountry;
 //jquery to find user's country by ip
@@ -127,18 +112,8 @@ $('body').on('click', '#showRoom', function (event) {
 
 
 $(document).ready(function () {
-    $('.openwnd').click(function () {
-        $('.poup').fadeIn();
-       // $("#text span").remove();
-        $("#text span").append(localLight);
-    });
     $('.poup .close').click(function () {
         $('.poup').fadeOut();
-    });
-    $('.poup .submit').click(function () {
-        //$("#text span").replaceWith("Light is ON = " + changeValue());
-
-        // alert("Нажата кнопка ''Действие ")
     });
 });
 
@@ -146,8 +121,11 @@ $(document).ready(function () {
 window.onload = function () {
     let a = document.getElementById('switch');
     a.onclick = function () {
-        if (this.innerHTML == 'true') this.innerHTML = 'false';
-        else this.innerHTML = 'true';
+        if (this.innerHTML == 'true') {
+            this.innerHTML = 'false';
+        } else {
+            this.innerHTML = 'true';
+        }
         return false;
     }
 };
