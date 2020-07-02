@@ -46,7 +46,7 @@ $(document).ready(function () {
                     trHTML += '<tr class=\"temp\"><td class=\"roomsName\">' + data.roomList[i].roomsName +
                         '\t</td><td class=\"country\">' + data.roomList[i].country +
                         '\t</td><td class=\"lightStatus\">' + data.roomList[i].lightStatus +
-                        '\t</td><td><button type=\"submit\" id=\"showRoom\"' +
+                        '\t</td><td><button type=\"submit\" id=\"showRoom\" class=\"showRoom\"' +
                         '>Enter</button>' +
                         '\t</td></tr>';
                 }
@@ -79,16 +79,17 @@ $(document).ready(function () {
     });
 });
 
-
+let myele;//for hide buttons when room is open
 async function enterTheRoom(roomName, roomCountry, light) {
     if (usersCountry === roomCountry.toUpperCase().trim()) {
         $('.poup').fadeIn();
         $("#text span").append(localLight);
+        myele =  $(".showRoom");
+        myele.hide();
     } else {
         alert("You can't enter this room!");
     }
 }
-
 
 let usersCountry;
 //jquery to find user's country by ip
@@ -110,35 +111,10 @@ $('body').on('click', '#showRoom', function (event) {
 });
 
 
-// $(document).ready(function () {
-//     $('.poup .close').click(function () {
-//         $('.poup').fadeOut();
-//
-//         console.log("localLightForEq = " + localLightForEq + "; localLight = " + localLight + " == " + localLightForEq === localLight);
-//         if (localLightForEq !== localLight) {
-//             let dataToSend = new FormData();
-//             dataToSend.append("command", "CHANGE_LIGHT_STATUS");
-//             dataToSend.append("localRoomName", localRoomName);
-//             dataToSend.append("localLight", localLight);
-//             let response = fetch("/RoomsWithLightBulbs/ajax", {
-//                 method: 'POST',
-//                 body: dataToSend,
-//             });
-//
-//             if (response.ok) {
-//                 alert("Changing light status saved into database");
-//             } else {
-//                 alert("ERROR: " + response.status);
-//             }
-//         } else {
-//             alert("Nothing to send!");
-//         }
-//     });
-// });
-
 $(document).ready(function () {
     $('.poup .close').click(function () {
         $('.poup').fadeOut();
+        myele.show();
     });
 });
 
