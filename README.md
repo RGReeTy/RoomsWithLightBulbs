@@ -1,9 +1,9 @@
 # RoomsWithLightBulbs
 Test project
 
-Backend part - java
-Frontend part - javascript, jsp
-Database - H2
+Backend part - java;
+Frontend part - javascript, jsp;
+Database - H2.
 
 Screenshots of working programm below
 
