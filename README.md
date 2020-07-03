@@ -11,12 +11,12 @@ Screenshots of working programm below
 
 ![Иллюстрация к проекту](https://user-images.githubusercontent.com/35728774/86466377-2edacc80-bd3c-11ea-8c16-011f2d1ce98f.JPG)
 
-![Иллюстрация к проекту](https://user-images.githubusercontent.com/35728774/86466380-2f736300-bd3c-11ea-9a95-011de737c8d4.JPG)
+![Иллюстрация к проекту](https://user-images.githubusercontent.com/35728774/86473368-73b93000-bd49-11ea-9c90-1417208282d5.JPG)
 
-![Иллюстрация к проекту](https://user-images.githubusercontent.com/35728774/86466382-2f736300-bd3c-11ea-941f-a3766973f372.jpg)
+![Иллюстрация к проекту](https://user-images.githubusercontent.com/35728774/86473370-73b93000-bd49-11ea-9dce-29228ea58ddc.jpg)
 
-![Иллюстрация к проекту](https://user-images.githubusercontent.com/35728774/86466384-300bf980-bd3c-11ea-87f4-f76a5dc47dfe.jpg)
+![Иллюстрация к проекту](https://user-images.githubusercontent.com/35728774/86473372-7451c680-bd49-11ea-9e23-99e42832ffab.jpg)
 
-![Иллюстрация к проекту](https://user-images.githubusercontent.com/35728774/86466385-300bf980-bd3c-11ea-9a3f-6da912fb6d72.jpg)
+![Иллюстрация к проекту](https://user-images.githubusercontent.com/35728774/86473374-7451c680-bd49-11ea-880b-86ff60408bea.jpg)
 
-![Иллюстрация к проекту](https://user-images.githubusercontent.com/35728774/86466386-30a49000-bd3c-11ea-9673-2c1f8f488737.jpg)
+![Иллюстрация к проекту](https://user-images.githubusercontent.com/35728774/86473375-74ea5d00-bd49-11ea-9a43-36942033a8b3.jpg)
