@@ -7,7 +7,7 @@ Database - H2
 
 Screenshots of working programm below
 
-https://user-images.githubusercontent.com/35728774/86466376-2e423600-bd3c-11ea-8b02-47b4b202a3e8.JPG
+![Иллюстрация к проекту](https://user-images.githubusercontent.com/35728774/86466376-2e423600-bd3c-11ea-8b02-47b4b202a3e8.JPG)
 
 https://user-images.githubusercontent.com/35728774/86466377-2edacc80-bd3c-11ea-8c16-011f2d1ce98f.JPG
 
