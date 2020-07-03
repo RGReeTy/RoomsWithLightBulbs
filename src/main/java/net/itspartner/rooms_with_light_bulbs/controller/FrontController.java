@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * The type Front controller.
+ */
 @WebServlet(urlPatterns = "/Controller", name = "FrontController")
 @MultipartConfig
 public class FrontController extends HttpServlet {

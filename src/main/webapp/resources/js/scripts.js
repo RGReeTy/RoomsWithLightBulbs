@@ -25,8 +25,8 @@ async function loadAllCountries() {
 }
 
 //Built table by data from db
-$(document).ready(function () {
-    $("#btnSubmit").click(function (e) {
+$(document).ready(function() {
+    $("#btnSubmit").click(function(e) {
         e.preventDefault();
         $("#show2").find("tr").remove();
         $("#show2").find("tbody").remove();
@@ -35,7 +35,7 @@ $(document).ready(function () {
             type: 'POST',
             url: '/RoomsWithLightBulbs/ajax?command=ALL_ROOMS',
             dataType: "json",
-            success: function (data) {
+            success: function(data) {
                 let trHTML = '<thead><tr>' +
                     '            <th>Title</th>\t' +
                     '            <th>Country</th>\t' +
@@ -53,7 +53,7 @@ $(document).ready(function () {
                 trHTML += '</tbody>';
                 $("#show2").append(trHTML);
             },
-            error: function (e) {
+            error: function(e) {
                 $("#show2").html(e.responseText);
             }
         });
@@ -65,8 +65,8 @@ let localRoomName;
 let localCountry;
 let localLight;
 let currentRow;
-$(document).ready(function () {
-    $("#show2").on('click', '#showRoom', function () {
+$(document).ready(function() {
+    $("#show2").on('click', '#showRoom', function() {
         currentRow = $(this).closest("tr");
 
         localRoomName = currentRow.find(".roomsName").text();
@@ -77,12 +77,13 @@ $(document).ready(function () {
     });
 });
 
-
+//open hidden window - Room
 //hiding buttons when one room is open
-let buttons;//for hide buttons when room is open
+let buttons; //for hide buttons when room is open
 async function enterTheRoom(roomName, roomCountry, light) {
     if (usersCountry === roomCountry.toUpperCase().trim()) {
         $('.poup').fadeIn();
+        $('#roomsName').append(localRoomName).append("<br>");
         $("#text span").append(localLight);
         buttons = $(".showRoom");
         buttons.hide();
@@ -97,35 +98,35 @@ async function enterTheRoom(roomName, roomCountry, light) {
 
 //getting user's country by ip from geojs.io
 let usersCountry;
-$('body').on('click', '#showRoom', function (event) {
+$('body').on('click', '#showRoom', function(event) {
     event.preventDefault();
     $.ajax({
         url: "https://get.geojs.io/v1/ip/geo.js",
         dataType: "jsonp",
         jsonpCallback: "geoip",
-        success: function (data) {
+        success: function(data) {
             usersCountry = data.country.toUpperCase().trim();
             console.log(usersCountry);
             enterTheRoom(localRoomName, localCountry, localLight);
         },
-        error: function () {
+        error: function() {
             $(this).replaceWith("Problem to find where are you from..")
         }
     });
 });
 
 //return buttons when room close
-$(document).ready(function () {
-    $('.poup .close').click(function () {
+$(document).ready(function() {
+    $('.poup .close').click(function() {
         $('.poup').fadeOut();
         buttons.show();
     });
 });
 
 //changing light status by click
-window.onload = function () {
+window.onload = function() {
     let a = document.getElementById('switch');
-    a.onclick = function () {
+    a.onclick = function() {
         if (this.innerHTML == 'true') {
             this.innerHTML = 'false';
             localLight = false;
@@ -146,11 +147,11 @@ async function sendLightStatus() {
         type: "POST",
         url: "/RoomsWithLightBulbs/ajax",
         data: "command=CHANGE_LIGHT_STATUS&localRoomName=" + localRoomName + "&localLight=" + localLight,
-        success: function (resp) {
+        success: function(resp) {
             //alert("Changing light status saved into database");
         },
 
-        error: function () {
+        error: function() {
             console.log('Service call failed!');
         }
     });
@@ -163,7 +164,7 @@ function executeUpdateRow() {
         type: "GET",
         url: '/RoomsWithLightBulbs/ajax',
         data: "command=UPDATE_ROOM&localRoomName=" + localRoomName,
-        success: function (data) {
+        success: function(data) {
             let tempRoomName = data.room[0].roomsName;
             let tempCountry = data.room[0].country;
             let tempLight = data.room[0].lightStatus;
@@ -175,10 +176,9 @@ function executeUpdateRow() {
                 currentRow.find(".lightStatus").text(tempLight);
             }
         },
-        complete: function () {
+        complete: function() {
             // Schedule the next request when the current one's complete
             setTimeout(executeUpdateRow, 5000);
         }
     });
 }
-

@@ -56,6 +56,7 @@
 
 <div class="poup" style="display:none;">
     <div id="text">
+    <div id="roomsName"></div>
         Light is ON = <a id="switch" href="#"><span></span></a>
     </div>
     <br>

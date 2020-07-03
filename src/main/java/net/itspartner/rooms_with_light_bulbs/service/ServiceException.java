@@ -21,7 +21,7 @@ public class ServiceException extends Exception {
 
     @Override
     public String toString() {
-        return "ReceiverException{}" + this.getMessage();
+        return "ServiceException: " + this.getMessage();
     }
 
 }

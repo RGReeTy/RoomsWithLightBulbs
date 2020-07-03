@@ -13,6 +13,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * The method to Get all countries.
+ */
 public class GetAllCountries implements AjaxCommand {
 
     private final static Logger logger = Logger.getLogger(GetAllCountries.class);

@@ -4,6 +4,9 @@ import net.itspartner.rooms_with_light_bulbs.dao.RoomDAO;
 import net.itspartner.rooms_with_light_bulbs.dao.RoomDAOImpl;
 import net.itspartner.rooms_with_light_bulbs.dao.factory.DAOFactory;
 
+/**
+ * The type Sqldao factory.
+ */
 public class SQLDAOFactory implements DAOFactory {
 
     private final static SQLDAOFactory sqlDAOFactory = new SQLDAOFactory();
@@ -13,6 +16,11 @@ public class SQLDAOFactory implements DAOFactory {
     private SQLDAOFactory() {
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static SQLDAOFactory getInstance() {
         return sqlDAOFactory;
     }

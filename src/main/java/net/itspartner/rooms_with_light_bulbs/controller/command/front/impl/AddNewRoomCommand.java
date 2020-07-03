@@ -16,6 +16,9 @@ import java.io.IOException;
 import static net.itspartner.rooms_with_light_bulbs.service.validation.SimpleValidator.isNumber;
 
 
+/**
+ * The type Add new room command.
+ */
 public class AddNewRoomCommand implements Command {
 
     private final static Logger logger = Logger.getLogger(AddNewRoomCommand.class);

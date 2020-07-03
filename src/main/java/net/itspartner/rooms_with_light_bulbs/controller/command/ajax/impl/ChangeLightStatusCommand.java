@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+/**
+ * The class to Change light status command.
+ */
 public class ChangeLightStatusCommand implements AjaxCommand {
 
     private static final Logger logger = Logger.getLogger(ChangeLightStatusCommand.class);

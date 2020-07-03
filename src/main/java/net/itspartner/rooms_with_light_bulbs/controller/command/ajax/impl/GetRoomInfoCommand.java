@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The type Get room info command.
+ */
 public class GetRoomInfoCommand implements AjaxCommand {
 
     private final static Logger logger = Logger.getLogger(GetRoomInfoCommand.class);

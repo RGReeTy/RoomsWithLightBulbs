@@ -6,7 +6,11 @@ public class SimpleValidator {
 
 
     public static boolean roomTitleIsCorrectSymbols(Room room) {
-        return !room.getRoomsName().matches("\\W");
+        boolean temp = true;
+        if (room == null || room.getRoomsName().matches("\\W")) {
+            temp = false;
+        }
+        return temp;
     }
 
     public static boolean isNumber(String str) {

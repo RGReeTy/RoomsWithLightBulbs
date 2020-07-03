@@ -14,6 +14,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The type Get all rooms.
+ */
 public class GetAllRooms implements AjaxCommand {
 
     private final static Logger logger = Logger.getLogger(GetAllRooms.class);

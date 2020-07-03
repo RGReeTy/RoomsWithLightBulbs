@@ -9,6 +9,9 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executor;
 
+/**
+ * The type Connection pool.
+ */
 public final class ConnectionPool {
 
     private static final String DB_DRIVER = "driver";
@@ -47,6 +50,11 @@ public final class ConnectionPool {
         }
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static ConnectionPool getInstance() {
         if (instance == null) {
             synchronized (ConnectionPool.class) {
@@ -58,6 +66,11 @@ public final class ConnectionPool {
         return instance;
     }
 
+    /**
+     * Init pool.
+     *
+     * @throws ConnectionPoolException the connection pool exception
+     */
     public void initPool() throws ConnectionPoolException {
         logger.info("init PoolConnection start");
         try {
@@ -80,6 +93,11 @@ public final class ConnectionPool {
         logger.info("init PoolConnection finish");
     }
 
+    /**
+     * Dispose.
+     *
+     * @throws ConnectionPoolException the connection pool exception
+     */
     public void dispose() throws ConnectionPoolException {
         clearConnectionQueue();
     }
@@ -94,6 +112,12 @@ public final class ConnectionPool {
         }
     }
 
+    /**
+     * Take connection .
+     *
+     * @return the connection
+     * @throws ConnectionPoolException the connection pool exception
+     */
     public Connection takeConnection() throws ConnectionPoolException {
         logger.info("takeConnection start");
 
@@ -119,6 +143,13 @@ public final class ConnectionPool {
         }
     }
 
+    /**
+     * Close connection.
+     *
+     * @param con the Connection
+     * @param st  the Statement
+     * @param rs  the ResultSet
+     */
     public void closeConnection(Connection con, Statement st, ResultSet rs) {
         try {
             con.close();
@@ -137,6 +168,12 @@ public final class ConnectionPool {
         }
     }
 
+    /**
+     * Close connection.
+     *
+     * @param con the con
+     * @param st  the st
+     */
     public void closeConnection(Connection con, Statement st) {
         try {
             con.close();
@@ -153,11 +190,22 @@ public final class ConnectionPool {
     private class PooledConnection implements Connection {
         private Connection connection;
 
+        /**
+         * Instantiates a new Pooled connection.
+         *
+         * @param c the c
+         * @throws SQLException the sql exception
+         */
         public PooledConnection(Connection c) throws SQLException {
             this.connection = c;
             this.connection.setAutoCommit(true);
         }
 
+        /**
+         * Really close.
+         *
+         * @throws SQLException the sql exception
+         */
         public void reallyClose() throws SQLException {
             connection.close();
         }

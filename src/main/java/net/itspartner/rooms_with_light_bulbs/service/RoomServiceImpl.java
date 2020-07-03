@@ -13,12 +13,16 @@ import java.util.Set;
 import static net.itspartner.rooms_with_light_bulbs.service.validation.SimpleValidator.roomTitleIsCorrectSymbols;
 
 
+/**
+ * The type Room service.
+ */
 public class RoomServiceImpl implements RoomService {
 
     private static final Logger logger = Logger.getLogger(RoomServiceImpl.class);
 
     private final DAOFactory daoFactory = DAOFactoryProvider.getSqlDaoFactory();
     private RoomDAO roomDao = daoFactory.getCountryDao();
+
 
     @Override
     public boolean addNewRoom(Room room) throws ServiceException {

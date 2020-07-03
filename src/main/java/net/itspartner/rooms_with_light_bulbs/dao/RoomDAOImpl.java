@@ -15,6 +15,9 @@ import java.util.List;
 import java.util.Set;
 
 
+/**
+ * The type Room dao.
+ */
 public class RoomDAOImpl implements RoomDAO {
 
     private static final Logger logger = Logger.getLogger(RoomDAOImpl.class);
@@ -34,9 +37,17 @@ public class RoomDAOImpl implements RoomDAO {
 
     private static RoomDAOImpl instance = new RoomDAOImpl();
 
+    /**
+     * Instantiates a new Room dao.
+     */
     public RoomDAOImpl() {
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static RoomDAOImpl getInstance() {
         return instance;
     }

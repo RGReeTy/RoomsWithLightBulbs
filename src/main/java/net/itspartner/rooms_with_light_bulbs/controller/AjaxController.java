@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * The type Ajax controller.
+ */
 @WebServlet(urlPatterns = "/ajax", name = "AjaxController")
 @MultipartConfig
 public class AjaxController extends HttpServlet {
