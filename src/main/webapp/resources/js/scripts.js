@@ -1,5 +1,5 @@
+//Function for loading countries from by ajax
 let working = false;
-
 async function loadAllCountries() {
     if (working) {
         return false;
@@ -24,7 +24,7 @@ async function loadAllCountries() {
     }
 }
 
-
+//Built table by data from db
 $(document).ready(function () {
     $("#btnSubmit").click(function (e) {
         e.preventDefault();
@@ -60,7 +60,7 @@ $(document).ready(function () {
     });
 });
 
-
+//remembering row, which was clicked
 let localRoomName;
 let localCountry;
 let localLight;
@@ -77,6 +77,8 @@ $(document).ready(function () {
     });
 });
 
+
+//hiding buttons when one room is open
 let buttons;//for hide buttons when room is open
 async function enterTheRoom(roomName, roomCountry, light) {
     if (usersCountry === roomCountry.toUpperCase().trim()) {
@@ -85,16 +87,16 @@ async function enterTheRoom(roomName, roomCountry, light) {
         buttons = $(".showRoom");
         buttons.hide();
 
-        while ($(buttons).is(":hidden")) {
-            setTimeout(executeUpdateRow(), 5000);
-        }
+        // while ($(buttons).is(":hidden")) {
+        //     setTimeout(executeUpdateRow(), 5000);
+        // }
     } else {
         alert("You can't enter this room!");
     }
 }
 
+//getting user's country by ip from geojs.io
 let usersCountry;
-//jquery to find user's country by ip
 $('body').on('click', '#showRoom', function (event) {
     event.preventDefault();
     $.ajax({
@@ -112,7 +114,7 @@ $('body').on('click', '#showRoom', function (event) {
     });
 });
 
-
+//return buttons when room close
 $(document).ready(function () {
     $('.poup .close').click(function () {
         $('.poup').fadeOut();
@@ -120,7 +122,7 @@ $(document).ready(function () {
     });
 });
 
-
+//changing light status by click
 window.onload = function () {
     let a = document.getElementById('switch');
     a.onclick = function () {
@@ -138,6 +140,7 @@ window.onload = function () {
     }
 };
 
+//send light status to db
 async function sendLightStatus() {
     $.ajax({
         type: "POST",
@@ -153,6 +156,8 @@ async function sendLightStatus() {
     });
 }
 
+//syncronize light status from db by timer
+//not used, coz i think it's stupid method - fall-down-db, sure what exist better way
 function executeUpdateRow() {
     $.ajax({
         type: "GET",
@@ -175,6 +180,5 @@ function executeUpdateRow() {
             setTimeout(executeUpdateRow, 5000);
         }
     });
-    setTimeout(executeUpdateRow, 5000);
 }
 

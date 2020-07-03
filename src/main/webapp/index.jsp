@@ -41,9 +41,19 @@
         </div>
     </form>
 </div>
+
+<div style="text-align: center; align-content: center">
+    <br>
+    <h1><c:choose>
+        <c:when test="${not empty message}">
+            ${message}
+        </c:when>
+    </c:choose>
+    </h1>
+</div>
 <br>
 <hr>
-<%--<span class="openwnd">Open</span>--%>
+
 <div class="poup" style="display:none;">
     <div id="text">
         Light is ON = <a id="switch" href="#"><span></span></a>
